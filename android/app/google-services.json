@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "101556495372",
+    "project_id": "melo-e012d",
+    "storage_bucket": "melo-e012d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:101556495372:android:8fc6fc5f87187e10e9fa29",
+        "android_client_info": {
+          "package_name": "com.melo.semicolon"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSwgV9c27LRXi8KCxG7ganBAnscn13fsE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
