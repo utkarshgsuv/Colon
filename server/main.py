@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 import os
 from fastapi.middleware.cors import CORSMiddleware
+import asyncio
+import httpx
 
 from pydantic_model.chat_body import ChatBody
 from services.llm_response import AskLLM
@@ -19,6 +21,30 @@ app.add_middleware(
 
 fdb = FirestoreDB()
 llm = AskLLM()
+
+
+
+async def keep_awake():
+    while True:
+        try:
+            async with httpx.AsyncClient() as client:
+                response = await client.post(
+                    "https://colon-nsxy.onrender.com/hey",
+                    json={
+  "query": "hi how are you",
+  "mood": "neutral",
+  "id_token": "cdsdef"
+}  # Modify this payload as needed
+                )
+                print(f"Ping response: {response.status_code} - {response.text}")
+        except Exception as e:
+            print(f"Ping failed: {e}")
+        
+        await asyncio.sleep(600)  # Ping every 10 minutes
+
+@app.on_event("startup")
+async def startup_event():
+    asyncio.create_task(keep_awake())
 
 @app.post("/hey")
 def colon_endpoint(body: ChatBody):
